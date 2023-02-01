@@ -140,51 +140,15 @@ describe('SudokuChecker.prototype.getSquareRootMatrices', () => {
     ];
 
     squareRootMatricesArray = [
-      [
-        [1, 1, 1],
-        [1, 1, 1],
-        [1, 1, 1],
-      ],
-      [
-        [2, 2, 2],
-        [2, 2, 2],
-        [2, 2, 2],
-      ],
-      [
-        [3, 3, 3],
-        [3, 3, 3],
-        [3, 3, 3],
-      ],
-      [
-        [4, 4, 4],
-        [4, 4, 4],
-        [4, 4, 4],
-      ],
-      [
-        [5, 5, 5],
-        [5, 5, 5],
-        [5, 5, 5],
-      ],
-      [
-        [6, 6, 6],
-        [6, 6, 6],
-        [6, 6, 6],
-      ],
-      [
-        [7, 7, 7],
-        [7, 7, 7],
-        [7, 7, 7],
-      ],
-      [
-        [8, 8, 8],
-        [8, 8, 8],
-        [8, 8, 8],
-      ],
-      [
-        [9, 9, 9],
-        [9, 9, 9],
-        [9, 9, 9],
-      ],
+      [1, 1, 1, 1, 1, 1, 1, 1, 1],
+      [2, 2, 2, 2, 2, 2, 2, 2, 2],
+      [3, 3, 3, 3, 3, 3, 3, 3, 3],
+      [4, 4, 4, 4, 4, 4, 4, 4, 4],
+      [5, 5, 5, 5, 5, 5, 5, 5, 5],
+      [6, 6, 6, 6, 6, 6, 6, 6, 6],
+      [7, 7, 7, 7, 7, 7, 7, 7, 7],
+      [8, 8, 8, 8, 8, 8, 8, 8, 8],
+      [9, 9, 9, 9, 9, 9, 9, 9, 9],
     ];
   });
 
@@ -230,15 +194,11 @@ describe('SudokuChecker.prototype.getSquareRootMatrices', () => {
     expect(violatingTypes.length).toEqual(0);
   });
 
-  test('should return an array containing square arrays of size Math.sqrt(argument.length)', () => {
+  test('should return an array containing arrays of size Math.sqrt(argument.length)', () => {
     let splitMatrix = sudokuChecker.getSquareRootMatrices(testMatrix);
     console.log(splitMatrix);
     let sqrt = Math.sqrt(testMatrix.length);
-    let nonSquares = splitMatrix.filter(item => {
-      let notSquare = !sudokuChecker.checkForSquare(item);
-      let wrongSize = item.length !== sqrt;
-      return notSquare || wrongSize;
-    });
+    let wronglySized = splitMatrix.filter(item => item.length !== sqrt );
     expect(nonSquares.length).toEqual(0);
   });
 

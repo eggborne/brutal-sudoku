@@ -59,42 +59,17 @@ export class SudokuChecker {
   }
 
   getSquareRootMatrices(matrix) {
-    if (!this.checkForSquare(matrix)) {
-      return null;
-    }
     let matrices = [];
     let originalSize = matrix[0].length;
     let sqrt = Math.sqrt(originalSize);
-    for (let i = 0; i < originalSize; i++) {
-      matrices[i] = [];
-      for (let j = 0; j < sqrt; j++) {
-        matrices[i].push([]);
-      }
-    }
-    let flatMatrix = matrix.flat(2);
-    let currentMiniIndex = 0;
-    let currentMiniRow = 0;
-    let currentMiniColumn = 0;
-    flatMatrix.forEach((digit, d) => {
 
-      // console.log('mini index', currentMiniIndex)
-      // console.log('row', currentMiniRow)
-      // console.log('col', currentMiniColumn)
-      matrices[currentMiniIndex][currentMiniRow][currentMiniColumn] = digit;
-      if (currentMiniColumn + 1 === sqrt) {
-        currentMiniColumn = 0;
-        if (currentMiniRow + 1 === sqrt) {
-          currentMiniRow = 0;
-        } else {
-          currentMiniRow++;
-        }
-      } else {
-        currentMiniColumn++;
-      }
-      if (d > 0 && d % originalSize === 0 && (currentMiniIndex + 1) < originalSize) {
-        currentMiniIndex++;
-      }
+    matrix.forEach(row => {
+      
     });
+
+    console.log(matrices);
+
     return matrices;
   }
+
 }
