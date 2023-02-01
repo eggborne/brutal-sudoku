@@ -59,27 +59,26 @@ export class SudokuChecker {
   }
 
   getSquareRootMatrices(matrix) {
+    if (!this.checkForSquare(matrix)) {
+      return null;
+    }
     let matrices = [];
     let originalSize = matrix[0].length;
-    let sqrt = Math.sqrt(originalSize);
-
-    matrix.forEach(row => {
-      
-    });
-
-    console.log(matrices);
-
+    let rootSquareSize = Math.sqrt(originalSize);
+    for (let y = 0; y < matrix.length; y + rootSquareSize) {
+      for (let c = 0; c < matrix.length; c + rootSquareSize) {
+        let rectangleMembers = this.getRectangleFromMatrix(matrix, rootSquareSize, rootSquareSize, c, y);
+        matrices.push(rectangleMembers);
+      }
+    }
     return matrices;
   }
 
-  getRectFromMatrix(arr,width,height,x,y) {
-
-    let tmpArr = [];
-
-    for (let row=0; row<height; row++) {
-
-      tmpArr.push(...arr[row+y].slice(x,x+width))
-    } 
+  getRectangleFromMatrix(arr, width, height, x, y) {
+    let rectangleMembers = [];
+    for (let row = 0; row < height; row++) {
+      rectangleMembers.push(...arr[row + y].slice(x, x + width));
+    }
+    return rectangleMembers;
   }
-
 }
