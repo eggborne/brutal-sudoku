@@ -72,4 +72,14 @@ export class SudokuChecker {
     return matrices;
   }
 
+  getRectFromMatrix(arr,width,height,x,y) {
+
+    let tmpArr = [];
+
+    for (let row=0; row<height; row++) {
+
+      tmpArr.push(...arr[row+y].slice(x,x+width))
+    } 
+  }
+
 }
