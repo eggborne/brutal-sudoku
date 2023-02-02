@@ -1,4 +1,25 @@
+:root {
+  --puzzle-size: 9;
+}
+
 * {
   margin: 0;
   box-sizing: border-box;
+}
+
+.puzzle-grid {
+  display: grid;
+  grid-template-rows: repeat(var(--puzzle-size), 1fr);
+  grid-template-columns: repeat(var(--puzzle-size), 1fr);
+  width: 90vw;
+  height: 90vw;
+  border: 2px solid green;
+}
+
+.puzzle-grid > div {
+  outline: 1px solid black;
+}
+
+.puzzle-grid:nth-child(odd) {
+  background-color: #00000033;
 }

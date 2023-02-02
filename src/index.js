@@ -1,4 +1,8 @@
-// import './css/styles.css';
+import './css/styles.css';
+
+window.onload = () => {
+  document.getElementById('#')
+}
 
 export class SudokuChecker {
   constructor() {
@@ -71,7 +75,6 @@ export class SudokuChecker {
         matrices.push(rectangleMembers);
       }
     }
-    console.table(matrices);
     return matrices;
   }
 
@@ -83,7 +86,7 @@ export class SudokuChecker {
     return rectangleMembers;
   }
 
-  checkPuzzle(puzzleMatrix, test) {
+  checkPuzzle(puzzleMatrix) {
     let legal = true;
     let rectangleRows = this.getSquareRootMatrices(puzzleMatrix);
     if (!this.checkMatrixForUniqueness(puzzleMatrix)) {
@@ -91,7 +94,6 @@ export class SudokuChecker {
     }
     rectangleRows.forEach(row => {
       if (!this.checkArrayForUniqueness(row)) {
-        if (test) { console.log('rectangleRow', row, 'uniqeness failed' )}
         legal = false;
       }
     });

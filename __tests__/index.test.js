@@ -255,7 +255,7 @@ describe('SudokuChecker.prototype.checkPuzzle', () => {
       [9, 1, 2, 3, 4, 5, 6, 7, 8]
     ];
     expect(sudokuChecker.checkMatrixForUniqueness(incorrectRootSquaresMatrix)).toEqual(true);
-    expect(sudokuChecker.checkPuzzle(incorrectRootSquaresMatrix, true)).toEqual(false);
+    expect(sudokuChecker.checkPuzzle(incorrectRootSquaresMatrix)).toEqual(false);
   });
 
   test('should return false if neither its argument\'s rows and columns are unique', () => {
