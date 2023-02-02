@@ -14,12 +14,14 @@ window.onload = async () => {
 
 function handleStartSearchClick() {
   if (sudokuChecker.phase === 'idle') {
-    sudokuChecker.buildRandomPuzzle(1, 100);
     document.getElementById('start-search-button').innerText = 'Stop searching';
+    document.body.classList.replace('idle', 'dimmed');
     sudokuChecker.phase = 'searching';
+    sudokuChecker.buildRandomPuzzle(1);
   } else if (sudokuChecker.phase === 'searching') {
     sudokuChecker.phase = 'idle';
     document.getElementById('start-search-button').innerText = 'Start searching';
+    document.body.classList.replace('dimmed', 'idle');
   }
 }
 

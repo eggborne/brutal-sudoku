@@ -1,4 +1,4 @@
-import { SudokuChecker } from './../src/index.js';
+import SudokuChecker from '../src/SudokuChecker.js';
 const sudokuChecker = new SudokuChecker();
 
 describe('SudokuChecker.prototype.checkForSquare', () => {
