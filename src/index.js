@@ -65,20 +65,36 @@ export class SudokuChecker {
     let matrices = [];
     let originalSize = matrix[0].length;
     let rootSquareSize = Math.sqrt(originalSize);
-    for (let y = 0; y < matrix.length; y + rootSquareSize) {
-      for (let c = 0; c < matrix.length; c + rootSquareSize) {
+    for (let y = 0; y < matrix.length; y += rootSquareSize) {
+      for (let c = 0; c < matrix.length; c += rootSquareSize) {
         let rectangleMembers = this.getRectangleFromMatrix(matrix, rootSquareSize, rootSquareSize, c, y);
         matrices.push(rectangleMembers);
       }
     }
+    console.table(matrices);
     return matrices;
   }
 
   getRectangleFromMatrix(arr, width, height, x, y) {
     let rectangleMembers = [];
     for (let row = 0; row < height; row++) {
-      rectangleMembers.push(...arr[row + y].slice(x, x + width));
+      rectangleMembers.push(...arr[y + row].slice(x, x + width));
     }
     return rectangleMembers;
+  }
+
+  checkPuzzle(puzzleMatrix, test) {
+    let legal = true;
+    let rectangleRows = this.getSquareRootMatrices(puzzleMatrix);
+    if (!this.checkMatrixForUniqueness(puzzleMatrix)) {
+      legal = false;
+    }
+    rectangleRows.forEach(row => {
+      if (!this.checkArrayForUniqueness(row)) {
+        if (test) { console.log('rectangleRow', row, 'uniqeness failed' )}
+        legal = false;
+      }
+    });
+    return legal;
   }
 }
