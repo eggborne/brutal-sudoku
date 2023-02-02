@@ -28,6 +28,7 @@ describe('SudokuChecker.prototype.checkForSquare', () => {
 
 describe('SudokuChecker.prototype.checkArrayForUniqueness', () => {
 
+  // must adapt to take any length
   test('should correctly determine if an array has only one of each number 1 through 9', () => {
     let correctTestArray = [3, 2, 1, 4, 5, 6, 7, 8, 9];
     let incorrectTestArray = [1, 2, 3, 3, 4, 5, 6, 7, 8];
@@ -288,3 +289,8 @@ describe('SudokuChecker.prototype.checkPuzzle', () => {
     expect(sudokuChecker.checkPuzzle(incorrectColumnOnlyTestMatrix)).toEqual(false);
   });
 });
+
+// BruteForceGenerator.prototype.getRandomUniqueArray;
+
+// should create unique array - just get sequence 1 through x
+// should not be sequential order

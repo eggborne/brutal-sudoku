@@ -23,12 +23,15 @@ export default class SudokuChecker {
   buildPuzzleMatrix(fillRandomly) {
     this.game.currentMatrix = [];
     for (let r = 0; r < this.game.height; r++) {
-      let rowContainer = [];
-      this.game.currentMatrix.push(rowContainer);
+      let rowContainer;
+      // let rowContainer = [];
+      // this.game.currentMatrix.push(rowContainer);
       if (fillRandomly) {
-        for (let c = 0; c < this.game.width; c++) {
-          rowContainer.push(randomInt(1, this.game.width));
-        }
+        rowContainer = this.getRandomUniqueArray(this.game.width);
+        this.game.currentMatrix.push(rowContainer);
+        // for (let c = 0; c < this.game.width; c++) {
+        //   rowContainer.push(randomInt(1, this.game.width));
+        // }
       }
     }
   }
@@ -60,8 +63,8 @@ export default class SudokuChecker {
   }
 
   async buildRandomPuzzle(limit) {
-    let pauseTime = (this.searchSpeed);
-    this.createPuzzleGrid(`main`);
+    let pauseTime = this.searchSpeed;
+    this.createPuzzleGrid(`main`); // inefficient
     this.buildPuzzleMatrix(true);
     this.printPuzzleGrid();
     let rowsAndColumnsOK = this.checkMatrixForUniqueness(this.game.currentMatrix);
@@ -70,7 +73,7 @@ export default class SudokuChecker {
       document.getElementById('valid-count-display').innerText = `Valid: ${this.validPuzzles.length}`;
     }
     if (rowsAndColumnsOK) {
-      console.green('PUZZLE ROWS/COLUMNS ARE OKAY!');
+      console.green('PUZZLE ROW AND COLUMNS ARE OKAY');
       console.table(this.game.currentMatrix);
       if (this.checkPuzzle(this.game.currentMatrix, true)) {
         console.green('FOUND VALID PUZZLE!');
@@ -113,9 +116,6 @@ export default class SudokuChecker {
   checkArrayForUniqueness(arr) {
     return Array.from(new Set(arr)).length === arr.length;
   }
-  // checkArrayForUniqueness(arr) {
-  //   return [...arr].sort().join() === '1,2,3,4,5,6,7,8,9';
-  // }
 
   getRowsFromColumns(matrix) {
     let newMatrix = [];
@@ -186,11 +186,19 @@ export default class SudokuChecker {
     if (!rootSquaresOnly && !this.checkMatrixForUniqueness(puzzleMatrix)) {
       legal = false;
     }
+    if (rectangleRows === null) {
+      console.pink('getSquareRootMatrices produced a bad rectangleRows in checkPuzzle')
+    }
     rectangleRows.forEach(row => {
       if (!this.checkArrayForUniqueness(row)) {
         legal = false;
       }
     });
     return legal;
+  }
+
+  getRandomUniqueArray(len) {
+    let randomArray = Array.from({ length: len }, (value, index) => index + 1);
+    return randomArray.sort((a, b) => 0.5 - Math.random());
   }
 }

@@ -1,5 +1,6 @@
 import './css/styles.css';
 import SudokuChecker from './SudokuChecker.js';
+import BruteForceGenerator from './BruteForceGenerator.js';
 require('console-green');
 
 let sudokuChecker;
