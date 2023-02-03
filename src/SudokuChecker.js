@@ -24,15 +24,16 @@ export default class SudokuChecker {
     this.game.currentMatrix = [];
     for (let r = 0; r < this.game.height; r++) {
       let rowContainer;
-      // let rowContainer = [];
-      // this.game.currentMatrix.push(rowContainer);
       if (fillRandomly) {
         rowContainer = this.getRandomUniqueArray(this.game.width);
-        this.game.currentMatrix.push(rowContainer);
+        // rowContainer = [];
         // for (let c = 0; c < this.game.width; c++) {
-        //   rowContainer.push(randomInt(1, this.game.width));
+        //   rowContainer[c] = (randomInt(1, this.game.width));
         // }
       }
+      this.game.currentMatrix.push(rowContainer);
+      // rowContainer = Array(this.game.width)
+      // rowContainer.fill(0, 0, this.game.width)
     }
   }
 
@@ -118,6 +119,7 @@ export default class SudokuChecker {
   }
 
   getRowsFromColumns(matrix) {
+    console.log('getowsfromcokumns recieved matrix', matrix)
     let newMatrix = [];
     for (let i = 0; i < matrix.length; i++) {
       newMatrix.push([]);

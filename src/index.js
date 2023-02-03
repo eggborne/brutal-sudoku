@@ -18,7 +18,10 @@ function handleStartSearchClick() {
     document.getElementById('start-search-button').innerText = 'Stop searching';
     document.body.classList.replace('idle', 'dimmed');
     sudokuChecker.phase = 'searching';
+
+    // sudokuChecker.buildRandomPuzzle(1);
     sudokuChecker.buildRandomPuzzle(1);
+
   } else if (sudokuChecker.phase === 'searching') {
     sudokuChecker.phase = 'idle';
     document.getElementById('start-search-button').innerText = 'Start searching';
